@@ -12,6 +12,7 @@ train_datagen = ImageDataGenerator(rescale = 1./255,
                                    shear_range = 0.2,
                                    zoom_range = 0.2,
                                    horizontal_flip = True)
+# dataset/training_set : is the path written below  . It is the path of the folder contaning 2 folders one of cat and other of dog . Cat folder contains the cat images for training and Dog folder contains the dog images for training
 training_set = train_datagen.flow_from_directory('dataset/training_set',
                                                  target_size = (64, 64),
                                                  batch_size = 32,
@@ -19,6 +20,7 @@ training_set = train_datagen.flow_from_directory('dataset/training_set',
 
 # Preprocessing the Test set
 test_datagen = ImageDataGenerator(rescale = 1./255)
+# similarly the below path dataset/test_set is the path of test_set folder 
 test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             target_size = (64, 64),
                                             batch_size = 32,
@@ -60,6 +62,7 @@ cnn.fit(x = training_set, validation_data = test_set, epochs = 25)
 
 import numpy as np
 from keras.preprocessing import image
+# Below is the path of a single image cat or dog any to predict the Machine learning output
 test_image = image.load_img('dataset/single_prediction/cat_or_dog_1.jpg', target_size = (64, 64))
 test_image = image.img_to_array(test_image)
 test_image = np.expand_dims(test_image, axis = 0)
